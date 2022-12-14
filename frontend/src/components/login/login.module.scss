@@ -1,0 +1,142 @@
+.container {
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  margin: 30px auto;
+  background-color: #fff;
+  max-width: 90%;
+}
+
+.button-close {
+  background: none;
+  border: none;
+}
+
+.section-hero {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.hero-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.hero-img {
+  margin: 0;
+  padding: 0;
+  width: 35%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.hero-content {
+  display: flex;
+  font-family: Montserrat, sans-serif;
+  flex-wrap: wrap;
+}
+
+.hero-message {
+  margin: 0;
+  padding: 0;
+  max-width: 65%;
+  
+  h1 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 60px;
+    font-weight: 700;
+    color: #000;
+  }
+  
+  h3 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 400;
+    color: #4ac959;
+  }
+}
+
+.login-form {
+  color: #000;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  justify-content: center;
+  width: 90%;
+
+  label {
+    width: 60%;
+  }
+
+  input {
+    border: 1px solid #959595;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    width: 60%;
+  }
+}
+
+.login-buttons {
+  margin: auto;
+  margin-bottom: 20px;
+  width: 60%;
+  text-align: center;
+
+  button {
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    margin-right: 10px;
+    padding: 7px;
+    width: 40%;
+  }
+}
+
+.button-signin {
+  background-color: #4ac959;
+}
+
+.button-signup {
+  background-color: #e88d39;
+}
+
+@media (max-width: 390px) {
+  .hero-message {
+    h1 {
+      font-size: 40px;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+  }
+
+  .login-buttons button {
+    border-radius: 5px;
+  }
+
+  .login-form {
+    margin: 20px 0;
+    font-size: 16px;
+
+    input {
+      margin-bottom: 15px;
+      border-radius: 5px;
+      padding: 5px 0;
+    }
+  }
+}
