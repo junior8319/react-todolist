@@ -1,0 +1,84 @@
+.card-carousel-container {
+  background: none;
+  border-radius: 16px;
+  flex: none;
+  // margin-left: 50px;
+  width: 100%;
+}
+
+.card-carousel {
+  position: relative;
+  background-color: #fff;
+  border-radius: 27px;
+  box-shadow: 3px 2px 3px rgba(5, 5, 5, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 500px;
+  width: 50%;
+  
+  h1, img {
+    background: none;
+  }
+
+  h1 {
+    font-family: Montserrat, sans-serif;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 40px;
+    width: 90%;
+  }
+
+  img {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.coopers-logo {
+  background: none;
+  position: absolute;
+  top: 60.8%;
+  right: 5%;
+  max-width: 49px;
+}
+
+.tags {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+
+  span {
+    border: 1px solid #9499b3;
+    border-radius: 16px;
+    padding: 7px;
+    color: #9499b3;
+  }
+}
+
+@media (max-width: 390px) {
+  .card-carousel-container {
+    flex: none;
+    margin: 5px;
+  }
+  
+  .card-carousel {
+    width: 90%;
+    max-width: 310px;
+    min-height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+
+    h1 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .coopers-logo {
+    top: 38.3%;
+    right: 7%;
+    max-width: 28px;
+  }
+}
