@@ -1,0 +1,17 @@
+span {
+  font-family: Montserrat, sans-serif;
+}
+
+@media (max-width: 390px) {
+  span {
+    font-size: 12px;
+  }
+
+  .logoutButton {
+    margin: 0 5px;
+    font-size: 14px;
+    padding: 5px;
+    max-width: 25px;
+    max-height: 25px;
+  }
+}
