@@ -2,14 +2,12 @@ import axios from 'axios';
 
 const HOST = process.env.REACT_APP_API_HOST;
 const PROTOCOL = process.env.REACT_APP_API_PROTOCOL;
-const RAILWAY_BACK = process.env.REACT_APP_BASE_URL_RAILWAY;
 
 const api = axios.create({
   baseURL:
-    process.env.REACT_APP_BASE_URL ||
-    `${PROTOCOL}://${HOST}` ||
-    `${PROTOCOL}://${RAILWAY_BACK}` ||
-    'http://localhost:3000',
+  `${PROTOCOL}://${HOST}` ||
+  process.env.REACT_APP_BASE_URL ||
+  'http://localhost:3000',
 });
 
 export const requestGet = async (endpoint: string, token: string) => {
