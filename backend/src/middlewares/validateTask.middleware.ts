@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import ITask from '../interfaces/ITask';
 import TasksService from '../services/Tasks.service';
-import { Status } from '../enums/Task';
 
 const validateTask = async (req: Request, res: Response, next: NextFunction) => {
   const task: ITask = req.body;
