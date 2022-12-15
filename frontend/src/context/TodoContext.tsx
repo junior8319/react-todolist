@@ -2,7 +2,7 @@
 import { createContext, useState, useEffect } from 'react';
 import { ILoginUser } from '../interfaces/ILogin';
 import ITask from '../interfaces/ITask';
-import IUser from '../../../backend/src/interfaces/IUser';
+import IUser from '../interfaces/IUser';
 import LoginHelper from '../helpers/Login.helper';
 import IContext from '../interfaces/IContext';
 import IError from '../interfaces/IError';
