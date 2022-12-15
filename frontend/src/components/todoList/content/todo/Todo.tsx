@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { TodoContext } from '../../../../context/TodoContext';
 import IContext from '../../../../interfaces/IContext';
-import ITask from '../../../../../../backend/src/interfaces/ITask';
+import ITask from '../../../../interfaces/ITask';
 import styles from './todo.module.scss';
 import todoBorder from '../../../../assets//images/todoCardTopBorder.svg';
 
