@@ -1,7 +1,7 @@
-import IUser from '../../../backend/src/interfaces/IUser';
-import { ILoginUser } from '../../../backend/src/interfaces/ILogin';
-import IToken from '../../../backend/src/interfaces/IToken';
-import ITask from '../../../backend/src/interfaces/ITask';
+import IUser from '../interfaces/IUser';
+import { ILoginUser } from '../interfaces/ILogin';
+import IToken from '../interfaces/IToken';
+import ITask from '../interfaces/ITask';
 
 export default interface IContext {
   users: IUser[] | null;
