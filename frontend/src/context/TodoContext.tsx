@@ -17,6 +17,8 @@ export const initialValues = {
   validToken: false,
   setToken: (newState: string) => {},
   userLogged: null,
+  response: null,
+  setResponse: (newState: IError | null) => {},
   setUserLogged: (newState: string) => {},
   tasks: [],
   setTasks: (newState: string) => {},
@@ -36,7 +38,7 @@ const TodoProvider = ({ children }: any) => {
   const [userLogged, setUserLogged] = useState<IUser | null>(initialValues.userLogged);
   const [tasks, setTasks] = useState<ITask[] |  []>(initialValues.tasks);
   const [login, setLogin] = useState<ILoginUser>(initialValues.login);
-  const [response, setResponse] = useState<IUser | IError | null>(null);
+  const [response, setResponse] = useState<IError | null>(null);
   const [token, setToken] = useState<IToken | null>(initialValues.token);
   const [isLoginOpen, setIsLoginOpen] = useState(initialValues.isLoginOpen);
 
@@ -59,13 +61,17 @@ const TodoProvider = ({ children }: any) => {
 
   const handleLogin = async (receivedUser: ILoginUser) => {
     const apiResponse = await LoginHelper(receivedUser);
-    setResponse(apiResponse);
     if (apiResponse.token) {
       setToken(apiResponse.token);
       localStorage.setItem('token', apiResponse.token);
     }
-    if (apiResponse.user) setUserLogged(apiResponse.user);
-    closeLogin();
+    if (apiResponse.user) {
+      setUserLogged(apiResponse.user);
+      setLogin(initialValues.login);
+      setResponse(null);
+      closeLogin();
+    };
+    setResponse(apiResponse);
   };
 
   const handleLogout = () => {
