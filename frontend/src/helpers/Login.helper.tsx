@@ -1,4 +1,4 @@
-import { ILoginUser } from "../../../backend/src/interfaces/ILogin";
+import { ILoginUser } from "../interfaces/ILogin";
 import { requestPost } from "../api/requests";
 
 const LoginHelper = async (user: ILoginUser) => {
