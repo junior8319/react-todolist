@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from 'react';
-import { ILoginUser } from '../../../backend/src/interfaces/ILogin';
+import { ILoginUser } from '../interfaces/ILogin';
 import ITask from '../../../backend/src/interfaces/ITask';
 import IUser from '../../../backend/src/interfaces/IUser';
 import LoginHelper from '../helpers/Login.helper';
