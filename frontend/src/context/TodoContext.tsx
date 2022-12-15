@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from 'react';
 import { ILoginUser } from '../interfaces/ILogin';
-import ITask from '../../../backend/src/interfaces/ITask';
+import ITask from '../interfaces/ITask';
 import IUser from '../../../backend/src/interfaces/IUser';
 import LoginHelper from '../helpers/Login.helper';
 import IContext from '../interfaces/IContext';
 import IError from '../interfaces/IError';
-import IToken from '../../../backend/src/interfaces/IToken';
+import IToken from '../interfaces/IToken';
 import ValidateHelper from '../helpers/Validate..helper';
 import GetUserHelper from '../helpers/GetUser.helper';
 
