@@ -3,7 +3,7 @@ import styles from './done.module.scss'
 import { useContext } from 'react';
 import { TodoContext } from '../../../../context/TodoContext';
 import IContext from '../../../../interfaces/IContext';
-import ITask from '../../../../../../backend/src/interfaces/ITask';
+import ITask from '../../../../interfaces/ITask';
 
 const Done = () => {
   const { tasks } = useContext(TodoContext) as IContext;
