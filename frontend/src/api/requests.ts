@@ -4,7 +4,6 @@ const HOST = process.env.REACT_APP_API_HOST;
 const PROTOCOL = process.env.REACT_APP_API_PROTOCOL;
 const RAILWAY_BACK = process.env.REACT_APP_BASE_URL_RAILWAY;
 
-
 const api = axios.create({
   baseURL:
     process.env.REACT_APP_BASE_URL ||
@@ -27,6 +26,10 @@ export const requestGet = async (endpoint: string, token: string) => {
 };
 
 export const requestPost = async (endpoint: string, token: string, body: {}) => {
+  console.log(endpoint);
+  console.log(body);
+  
+  
   if (token) {
     const { data } = await api.post(
       endpoint,
