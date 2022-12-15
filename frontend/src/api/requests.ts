@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+const HOST = process.env.REACT_APP_API_HOST;
+const PROTOCOL = process.env.REACT_APP_API_PROTOCOL;
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL || 'http://localhost:3000',
+  baseURL: `${PROTOCOL}://${HOST}` || process.env.REACT_APP_BASE_URL || 'http://localhost:3000',
 });
 
 export const requestGet = async (endpoint: string, token: string) => {
