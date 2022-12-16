@@ -72,12 +72,12 @@ const LoginComp = () => {
           </div>
         </form>
         { (response) &&
-          <section className={ styles['error-section'] }>
-            <h2>Error: </h2>
-            <h3>Status: </h3>
-            <span>{ response.status }</span>
-            <h3>Message: </h3>
-            <span>{ response.message }</span>
+          <section className={ styles['error-section-container'] }>
+            <article className={ styles['error-section-article'] }>
+              <h2>Error: </h2>
+              <h3>Status: <span>{ response.status }</span></h3>
+              <h3>Message: <span>{ response.message }</span></h3>
+            </article>
           </section>
         }
       </main>
