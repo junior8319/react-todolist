@@ -23,11 +23,7 @@ export const requestGet = async (endpoint: string, token: string) => {
   return data;
 };
 
-export const requestPost = async (endpoint: string, token: string, body: {}) => {
-  console.log(endpoint);
-  console.log(body);
-  
-  
+export const requestPost = async (endpoint: string, token: string, body: {}) => {  
   if (token) {
     const { data } = await api.post(
       endpoint,
