@@ -49,7 +49,7 @@ const TodoProvider = ({ children }: any) => {
   const [userLogged, setUserLogged] = useState<IUser | null>(initialValues.userLogged);
   const [tasks, setTasks] = useState<ITask[] |  []>(initialValues.tasks);
   const [login, setLogin] = useState<ILoginUser>(initialValues.login);
-  const [response, setResponse] = useState<IError | null>(null);
+  const [response, setResponse] = useState<IError | null>(initialValues.response);
   const [token, setToken] = useState<IToken | null>(initialValues.token);
   const [isLoginOpen, setIsLoginOpen] = useState(initialValues.isLoginOpen);
 
