@@ -3,6 +3,7 @@ import loginImg from '../../assets/images/loginImg.svg';
 import { TodoContext } from '../../context/TodoContext';
 import IContext from '../../interfaces/IContext';
 import styles from './registerUser.module.scss';
+import ErrorComp from '../error/Error';
 
 const RegisterUser = () => {
   const {
@@ -88,13 +89,7 @@ const RegisterUser = () => {
       </section>
 
       { (response) &&
-        <section>
-          <article>
-            <h2>Error: </h2>
-            <h3>Status: <span>{ response.status }</span></h3>
-            <h3>Message: <span>{ response.message }</span></h3>
-          </article>
-        </section>
+        <ErrorComp />
       }
     </main>
   );
