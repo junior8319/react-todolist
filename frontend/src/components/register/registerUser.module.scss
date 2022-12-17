@@ -1,0 +1,166 @@
+.register-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto 30px auto;
+  width: 90%;
+}
+
+.register-hero {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Montserrat, sans-serif;
+  margin: 20px;
+  max-height: 250px;
+  width: 95%;
+}
+
+.register-hero-image {
+  background: none;
+  margin: 0;
+  padding: 0;
+  max-height: 250px;
+  width: 35%;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.register-hero-message {
+  margin: 40px 0 0 0;
+  padding: 0;
+  width: 60%;
+
+  h1 {
+    color: #000;
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+
+  h3 {
+    color: #4ac959;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+}
+
+.register-form {
+  color: #6d8f6d;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Poppins, sans-serif;
+  margin: 0 auto 30px auto;
+  width: 90%;
+
+  article {
+    margin: auto;
+    width: 75%;
+
+    label {
+      width: 100%;
+    }
+  
+    input {
+      border: 1.5px solid #ddd;
+      border-radius: 7.5px;
+      padding: 7.5px 10px;
+      width: 95%;
+    }
+  }
+}
+
+.register-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 30px auto;
+  width: 90%;
+  
+  button {
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #4ac959;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.4s;
+    width: 150px;
+  }
+
+  button:hover {
+    background-color: #4ac95950;
+    color: #6d6d6d;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 390px) {
+  .register-container {
+    margin: 0 auto 10px auto;
+    width: 95%;
+  }
+  
+  .register-hero {
+    margin: 10px;
+    max-height: 150px;
+    width: 100%;
+  }
+  
+  .register-hero-image {
+    max-height: 150px;
+    width: 35%;
+  
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  
+  .register-hero-message {
+    margin: 10px 0 0 0;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+  
+    h3 {
+      font-size: 16px;
+    }
+  }
+  
+  .register-form {
+    margin: 0 auto 15px auto;
+    font-size: 14px;
+    width: 95%;
+  
+    article {
+      width: 85%;
+  
+      label {
+        width: 100%;
+      }
+    
+      input {
+        padding: 6.5px 10px;
+      }
+    }
+  }
+  
+  .register-buttons {
+    margin: 0 auto 20px auto;
+    width: 90%;
+    
+    button {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 7.5px;
+    }
+  }
+}
