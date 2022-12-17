@@ -1,11 +1,11 @@
 "use strict";
 require("dotenv/config");
 const config = {
-    username: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || '',
-    database: process.env.DB_NAME || 'todo_list',
-    host: process.env.DB_HOST || 'localhost',
-    port: Number(process.env.DB_PORT) || 3306,
-    dialect: 'mysql',
+  username: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || '',
+  database: process.env.MYSQLDATABASE || 'todo_list',
+  host: process.env.MYSQLHOST || 'localhost',
+  port: Number(process.env.MYSQLPORT) || 3306,
+  dialect: 'mysql',
 };
 module.exports = config;

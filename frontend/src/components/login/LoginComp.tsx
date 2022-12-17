@@ -6,7 +6,7 @@ import IContext from '../../interfaces/IContext';
 import { Navigate } from 'react-router-dom';
 
 const LoginComp = () => {
-  const { handleChange, handleLogin, userLogged, login, closeLogin } = useContext(TodoContext) as IContext;
+  const { userLogged, login, response, handleChange, handleLogin, closeLogin } = useContext(TodoContext) as IContext;
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -71,6 +71,15 @@ const LoginComp = () => {
             </button>
           </div>
         </form>
+        { (response) &&
+          <section className={ styles['error-section-container'] }>
+            <article className={ styles['error-section-article'] }>
+              <h2>Error: </h2>
+              <h3>Status: <span>{ response.status }</span></h3>
+              <h3>Message: <span>{ response.message }</span></h3>
+            </article>
+          </section>
+        }
       </main>
     );
   }

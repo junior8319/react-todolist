@@ -20,6 +20,9 @@ class LoginController {
       if (!userData) {
         return res.status(400).json({ message: 'Unable to login.' });
       }
+
+      console.log('USERDATA', userData);
+      
       
       return res.status(200).json(userData);
     } catch (error) {

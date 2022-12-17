@@ -1,17 +1,19 @@
-import { ILoginUser } from "../interfaces/ILogin";
-import { requestPost } from "../api/requests";
+import { requestPost } from '../api/requests';
+import { IRegistering } from '../interfaces/IUser';
 
-const LoginHelper = async (user: ILoginUser) => {
+const RegisterUserHelper = async (user: IRegistering) => {
   try {
     const response = await requestPost(
-      '/login',
+      '/users',
       '',
       {
+        name: user.name,
         email: user.email,
         password: user.password,
-      },
+        telephone: user.telephone,
+      }
     );
-    
+
     return response;
   } catch (error: any) {
     if (error.response.status && error.response.data.message) {
@@ -28,4 +30,4 @@ const LoginHelper = async (user: ILoginUser) => {
   }
 };
 
-export default LoginHelper;
+export default RegisterUserHelper;

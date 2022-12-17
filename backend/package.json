@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && nodemon ./build/server/server.js",
+    "start": "tsc && node ./build/server/server.js --omit=dev",
     "dev": "tsc && nodemon ./src/server/server.ts",
     "prestart": "npm run db:reset",
     "predebug": "npm install -g npm@8.19.2",

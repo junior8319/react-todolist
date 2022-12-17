@@ -85,7 +85,7 @@
     border: 1px solid #959595;
     border-radius: 10px;
     margin-bottom: 30px;
-    padding: 10px 0;
+    padding: 10px;
     width: 60%;
   }
 }
@@ -114,6 +114,33 @@
   background-color: #e88d39;
 }
 
+.error-section-container {
+  box-shadow: -2px -2px 3px 2px #e88d3950;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  margin-bottom: 30px;
+  width: 90%;
+}
+
+.error-section-article {
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  width: 90%;
+
+  h1, h2, h3 {
+    margin: 10px 0;
+  }
+  
+  span {
+    color: #e88d39;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+}
+
 @media (max-width: 390px) {
   .hero-message {
     h1 {
@@ -136,7 +163,21 @@
     input {
       margin-bottom: 15px;
       border-radius: 5px;
-      padding: 5px 0;
+    }
+  }
+
+  .error-section-article {
+    span {
+      color: #e88d39;
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+    
+    h3 {
+      font-size: 16px;
     }
   }
 }

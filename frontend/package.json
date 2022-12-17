@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@types/react-dnd": "^3.0.2",
-    "@types/react-dnd-html5-backend": "^3.0.2"
+    "@types/react-dnd-html5-backend": "^3.0.2",
+    "@types/react-modal": "^3.13.1"
   }
 }
