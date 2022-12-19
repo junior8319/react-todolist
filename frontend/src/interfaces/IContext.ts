@@ -7,6 +7,7 @@ import IError from './IError';
 export default interface IContext {
   inRegistrationUser: IRegistering;
   users: IUser[] | null;
+  task: ITask;
   tasks: ITask[] | [];
   userLogged: IUser | null;
   response: IError | null;
@@ -15,9 +16,11 @@ export default interface IContext {
   isLoginOpen: boolean;
   handleChange: (event: any) => void;
   handleRegisterChange: (event: any) => void;
+  handleTaskChange: (event: any) => void;
   handleLogin: (event: any) => void;
   handleLogout: (event: any) => void;
   handleRegister: (event: any) => void;
+  handleSendTask: (event: any) => void;
   openLogin: () => void;
   closeLogin: () => void;
 }
