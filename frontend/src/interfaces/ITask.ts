@@ -1,7 +1,7 @@
 export default interface ITask {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   status: string;
-  userId: number;
+  userId?: number;
 };
