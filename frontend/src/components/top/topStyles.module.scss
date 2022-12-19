@@ -8,9 +8,25 @@ span {
   margin-right: 50px;
 }
 
+header {
+  a {
+    margin: auto 0;
+  }
+}
+
 @media (max-width: 390px) {
   span {
     font-size: 12px;
+  }
+
+  .top-buttons {
+    margin-right: 0;
+
+    button {
+      font-size: 12px;
+      margin-right: 5px;
+      width: 60px;
+    }
   }
 
   .logoutButton {
