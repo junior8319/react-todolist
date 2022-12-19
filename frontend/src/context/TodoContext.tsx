@@ -11,6 +11,7 @@ import ValidateHelper from '../helpers/Validate..helper';
 import GetUserHelper from '../helpers/GetUser.helper';
 import RegisterUserHelper from '../helpers/RegisterUser.helper';
 import { useNavigate } from 'react-router-dom';
+import RegisterTaskHelper from '../helpers/RegisterTask.helper';
 
 export const initialValues = {
   inRegistrationUser: {
@@ -29,14 +30,22 @@ export const initialValues = {
   response: null,
   setResponse: (newState: IError | null) => {},
   setUserLogged: (newState: string) => {},
+  task: {
+    title: '',
+    description: '',
+    status: 'awaiting',
+  },
+  setTask: (newState: string) => {},
   tasks: [],
   setTasks: (newState: string) => {},
   login: { email: '', password: '' },
   handleChange: (event: any) => {},
   handleRegisterChange: (event: any) => {},
+  handleTaskChange: (event: any) => {},
   handleLogin: (event: any) => {},
   handleLogout: (event: any) => {},
   handleRegister: (event: any) => {},
+  handleSendTask: (event: any) => {},
   isLoginOpen: false,
   openLogin: () => {},
   closeLogin: () => {},
@@ -50,6 +59,7 @@ const TodoProvider = ({ children }: any) => {
   const [inRegistrationUser, setInRegistrationUser] = useState<IRegistering>(initialValues.inRegistrationUser);
   const [users, setUsers] = useState<IUser[]>(initialValues.users);
   const [userLogged, setUserLogged] = useState<IUser | null>(initialValues.userLogged);
+  const [task, setTask] = useState<ITask>(initialValues.task);
   const [tasks, setTasks] = useState<ITask[] |  []>(initialValues.tasks);
   const [login, setLogin] = useState<ILoginUser>(initialValues.login);
   const [response, setResponse] = useState<IError | null>(initialValues.response);
@@ -78,6 +88,16 @@ const TodoProvider = ({ children }: any) => {
 
     setInRegistrationUser({
       ...inRegistrationUser,
+      [name]: value,
+    });
+
+  };
+
+  const handleTaskChange = (event: any) => {
+    const { name, value } = event.target;
+
+    setTask({
+      ...task,
       [name]: value,
     });
 
@@ -121,8 +141,17 @@ const TodoProvider = ({ children }: any) => {
       setResponse(null);
       setInRegistrationUser(initialValues.inRegistrationUser);
     }
-    console.log(apiResponse);
     
+    setResponse(apiResponse);
+  };
+
+  const handleSendTask = async (receivedTask: ITask) => {
+    const apiResponse = await RegisterTaskHelper(receivedTask, token?.token);
+    if(apiResponse.task) {
+      setTasks([...tasks, apiResponse.task]);
+      setTask(initialValues.task);
+    }
+
     setResponse(apiResponse);
   };
   
@@ -130,6 +159,10 @@ const TodoProvider = ({ children }: any) => {
     const validateUserLogged = async () => {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
+        setToken({
+          ...token,
+          token: storedToken,
+        });
         const data = await ValidateHelper(storedToken);
         if (data.id) {
           const user = await GetUserHelper(storedToken, data.id);
@@ -145,6 +178,7 @@ const TodoProvider = ({ children }: any) => {
     inRegistrationUser,
     users,
     userLogged,
+    task,
     tasks,
     login,
     response,
@@ -158,6 +192,8 @@ const TodoProvider = ({ children }: any) => {
     handleLogin,
     handleLogout,
     handleRegister,
+    handleSendTask,
+    handleTaskChange,
     openLogin,
     closeLogin,
   };
