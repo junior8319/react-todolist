@@ -10,6 +10,7 @@ import IToken from '../interfaces/IToken';
 import ValidateHelper from '../helpers/Validate..helper';
 import GetUserHelper from '../helpers/GetUser.helper';
 import RegisterUserHelper from '../helpers/RegisterUser.helper';
+import { useNavigate } from 'react-router-dom';
 
 export const initialValues = {
   inRegistrationUser: {
@@ -44,6 +45,8 @@ export const initialValues = {
 export const TodoContext = createContext<IContext | null>(initialValues);
 
 const TodoProvider = ({ children }: any) => {
+  const navigate = useNavigate();
+
   const [inRegistrationUser, setInRegistrationUser] = useState<IRegistering>(initialValues.inRegistrationUser);
   const [users, setUsers] = useState<IUser[]>(initialValues.users);
   const [userLogged, setUserLogged] = useState<IUser | null>(initialValues.userLogged);
@@ -92,6 +95,7 @@ const TodoProvider = ({ children }: any) => {
       setLogin(initialValues.login);
       setResponse(null);
       closeLogin();
+      navigate('/users');
     }
     setResponse(apiResponse);
   };
@@ -115,6 +119,7 @@ const TodoProvider = ({ children }: any) => {
     if (apiResponse.user) {
       setUserLogged(apiResponse.user);
       setResponse(null);
+      setInRegistrationUser(initialValues.inRegistrationUser);
     }
     console.log(apiResponse);
     
