@@ -42,3 +42,41 @@ export const requestPost = async (endpoint: string, token: string, body: {}) => 
 
   return data;
 };
+
+export const requestPut = async (endpoint: string, token: string, body: {}) => {
+  if (token) {
+    const { data } = await api.put(
+      endpoint,
+      body,
+      {
+        headers: {
+          'Authorization': token,
+        }
+      }
+    );
+
+    return data;
+  }
+  
+  const { data } = await api.put(endpoint, body);
+
+  return data;
+};
+
+export const requestDelete = async (endpoint: string, token: string) => {
+  if (token) {
+    const { data } = await api.delete(
+      endpoint,
+      {
+        headers: {
+          'Authorization': token,
+        },
+      },
+    );
+
+    return data;
+  }
+
+  const { data } = await api.delete(endpoint);
+  return data;
+};
