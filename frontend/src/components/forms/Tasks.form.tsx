@@ -24,44 +24,49 @@ const TasksForm = () => {
   return (
     <main className={ styles['tasks-form-container'] }>
       <form className={ styles['tasks-form'] }>
-        <label htmlFor="title-input">Title: </label>
-        <input
-          type="text"
-          id="title-input"
-          name="title"
-          onChange={ (event) => handleTaskChange(event) }
-          value={ task.title }
-        />
+        <article>
+          <label htmlFor="title-input">Title: </label>
+          <input
+            type="text"
+            id="title-input"
+            name="title"
+            onChange={ (event) => handleTaskChange(event) }
+            value={ task.title }
+          />
+        </article>
 
-        <label htmlFor="desc-input">Description: </label>
-        <input
-          type="text"
-          id="desc-input"
-          name="description"
-          onChange={ (event) => handleTaskChange(event) }
-          value={ task.description }
-        />
-
-        <label htmlFor="status-select">Status: </label>
-        <select
-          name="status"
-          id="status-select"
-          onChange={ (event) => handleTaskChange(event) }
-          value={ task.status }
-        >
-          { status.map(stringStatus => {
-            return (
-              <option
-                value={ stringStatus }
-                key={ stringStatus }
-              >
-                { stringStatus }
-              </option>
-            );
-          }) }
-        </select>
-
+        <article>
+          <label htmlFor="desc-input">Description: </label>
+          <textarea
+            id="desc-input"
+            name="description"
+            onChange={ (event) => handleTaskChange(event) }
+            value={ task.description }
+          />
+        </article>
+          
+        <article>
+          <label htmlFor="status-select">Status: </label>
+          <select
+            name="status"
+            id="status-select"
+            onChange={ (event) => handleTaskChange(event) }
+            value={ task.status }
+          >
+            { status.map(stringStatus => {
+              return (
+                <option
+                  value={ stringStatus }
+                  key={ stringStatus }
+                >
+                  { stringStatus }
+                </option>
+              );
+            }) }
+          </select>
+        </article>
       </form>
+
       <section>
         <button
           type="submit"
