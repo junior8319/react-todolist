@@ -41,7 +41,7 @@ class UsersService {
       {
         where: { id: this.id },
         include: [
-          { model: TaskModel, as: 'tasks', attributes: { exclude: ['id'] } },
+          { model: TaskModel, as: 'tasks' },
         ],
         attributes: { exclude: ['password'] },
       }
