@@ -14,6 +14,8 @@ class TasksController {
 
   public title!: string;
 
+  public userId!: number;
+
   constructor() {
     this.service = new TasksService();
   }
@@ -22,6 +24,21 @@ class TasksController {
     try {
       const tasksList: ITask[] | null = await this.service.getTasks();
       
+      if (!tasksList) return res.status(404)
+        .json({ message: 'Can\'t find tasks in our database.' });
+
+      return res.status(200).json(tasksList);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  };
+
+  public getTasksByUserId = async (req: Request, res: Response, next: NextFunction) => {
+    try {      
+      const { userId } = req.params;
+      const tasksList: ITask[] | null = await this.service.getTasksByUserId(Number(userId));
+
       if (!tasksList) return res.status(404)
         .json({ message: 'Can\'t find tasks in our database.' });
 
@@ -108,13 +125,14 @@ class TasksController {
       
       const task = { ...req.body, id };
       
+      
       const updatedTask = await this.service.updateTask(task);
       if (!updatedTask) return res.status(403)
-        .json({
-          message: 'Could not register, probably ' +
-            'already exists a task with this description.'
-        });
-
+      .json({
+        message: 'Could not register, probably ' +
+        'already exists a task with this description.'
+      });
+      
       return res.status(200).json(updatedTask);
     } catch (error) {
       console.log(error);
