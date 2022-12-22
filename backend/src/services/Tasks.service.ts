@@ -47,6 +47,20 @@ class TasksService {
     return task.dataValues;
   };
 
+  public getTasksByUserId = async (receivedId: number): Promise<ITask[] | null> => {
+    if (!receivedId) return null;
+    this.userId = receivedId;
+
+    const tasks = await TaskModel.findAll(
+      {
+        where: { userId: this.userId },
+      }
+    );
+    if (!tasks) return null;
+
+    return tasks.map(task => task.dataValues);
+  };
+
   public getTaskByTitle = async (receivedTitle: string): Promise<ITask | null> => {
     if (!receivedTitle) return null;
     this.title = receivedTitle;
@@ -102,6 +116,12 @@ class TasksService {
       await taskToUpdate.update({ title: receivedTask.title });
     }
 
+    if (receivedTask.status) {
+      this.status = receivedTask.status;
+      
+      await taskToUpdate.update({ status: receivedTask.status }); 
+    }
+
     if (receivedTask.description && receivedTask.userId) {
       this.description = receivedTask.description;
       this.userId = receivedTask.userId;
@@ -119,7 +139,7 @@ class TasksService {
       await taskToUpdate.update({ password: md5(receivedTask.status) });
     }
 
-    return taskToUpdate;
+    return taskToUpdate.dataValues;
   };
 
   public deleteTask = async (receivedId: number): Promise<ITask | null> => {

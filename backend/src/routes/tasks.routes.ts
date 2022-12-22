@@ -3,6 +3,7 @@ import TasksController from '../controllers/Tasks.controller';
 import errorMiddleware from '../middlewares/error.middleware';
 import validateToken from '../middlewares/validateToken.middleware';
 import validateTask from '../middlewares/validateTask.middleware';
+import validateUpdateTask from '../middlewares/validateUpdateTask.middleware';
 
 const tasksRouter = Router();
 
@@ -10,6 +11,13 @@ tasksRouter.get(
   '/tasks',
   validateToken,
   TasksController.getTasks,
+  errorMiddleware.handleErrors,
+);
+
+tasksRouter.get(
+  '/tasks/:userId',
+  validateToken,
+  TasksController.getTasksByUserId,
   errorMiddleware.handleErrors,
 );
 
@@ -37,7 +45,7 @@ tasksRouter.post(
 tasksRouter.put(
   '/tasks/:id',
   validateToken,
-  validateTask,
+  validateUpdateTask,
   TasksController.updateTask,
   errorMiddleware.handleErrors,
 );

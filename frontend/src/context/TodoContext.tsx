@@ -7,10 +7,12 @@ import LoginHelper from '../helpers/Login.helper';
 import IContext from '../interfaces/IContext';
 import IError from '../interfaces/IError';
 import IToken from '../interfaces/IToken';
-import ValidateHelper from '../helpers/Validate..helper';
+import ValidateHelper from '../helpers/Validate.helper';
 import GetUserHelper from '../helpers/GetUser.helper';
 import RegisterUserHelper from '../helpers/RegisterUser.helper';
 import { useNavigate } from 'react-router-dom';
+import RegisterTaskHelper from '../helpers/RegisterTask.helper';
+import EditTaskHelper from '../helpers/EditTask.helper';
 
 export const initialValues = {
   inRegistrationUser: {
@@ -29,14 +31,26 @@ export const initialValues = {
   response: null,
   setResponse: (newState: IError | null) => {},
   setUserLogged: (newState: string) => {},
+  task: {
+    title: '',
+    description: '',
+    status: 'awaiting',
+  },
+  setTask: (newState: string) => {},
   tasks: [],
-  setTasks: (newState: string) => {},
+  unconcludeds: [],
+  setTasks: (newState: ITask[] | []) => {},
+  isEditing: false,
+  setIsEditing: (newState: boolean) => {},
   login: { email: '', password: '' },
   handleChange: (event: any) => {},
   handleRegisterChange: (event: any) => {},
+  handleTaskChange: (event: any) => {},
   handleLogin: (event: any) => {},
   handleLogout: (event: any) => {},
   handleRegister: (event: any) => {},
+  handleSendTask: (event: any) => {},
+  handleEditTask: (event: any) => {},
   isLoginOpen: false,
   openLogin: () => {},
   closeLogin: () => {},
@@ -48,9 +62,12 @@ const TodoProvider = ({ children }: any) => {
   const navigate = useNavigate();
 
   const [inRegistrationUser, setInRegistrationUser] = useState<IRegistering>(initialValues.inRegistrationUser);
+  const [isEditing, setIsEditing] = useState<boolean>(initialValues.isEditing);
   const [users, setUsers] = useState<IUser[]>(initialValues.users);
   const [userLogged, setUserLogged] = useState<IUser | null>(initialValues.userLogged);
+  const [task, setTask] = useState<ITask>(initialValues.task);
   const [tasks, setTasks] = useState<ITask[] |  []>(initialValues.tasks);
+  const [unconcludeds, setUnconcludeds] = useState<ITask[] | []>(initialValues.unconcludeds);
   const [login, setLogin] = useState<ILoginUser>(initialValues.login);
   const [response, setResponse] = useState<IError | null>(initialValues.response);
   const [token, setToken] = useState<IToken | null>(initialValues.token);
@@ -78,6 +95,16 @@ const TodoProvider = ({ children }: any) => {
 
     setInRegistrationUser({
       ...inRegistrationUser,
+      [name]: value,
+    });
+
+  };
+
+  const handleTaskChange = (event: any) => {
+    const { name, value } = event.target;
+
+    setTask({
+      ...task,
       [name]: value,
     });
 
@@ -121,7 +148,38 @@ const TodoProvider = ({ children }: any) => {
       setResponse(null);
       setInRegistrationUser(initialValues.inRegistrationUser);
     }
-    console.log(apiResponse);
+    
+    setResponse(apiResponse);
+  };
+  
+  const isUnconcluded = (task: ITask) => {
+    if (task.status === 'in progress' || task.status === 'awaiting') return task;
+  };
+
+
+  const filterUnconcludeds = () => tasks.filter(task => {
+    console.log(task);
+    
+    return isUnconcluded(task)
+  });
+  
+  const handleSendTask = async (receivedTask: ITask) => {
+    const apiResponse = await RegisterTaskHelper(receivedTask, token?.token);
+    if(apiResponse.task) {
+      setTasks([...tasks, apiResponse.task]);
+      setTask(initialValues.task);
+      setResponse(initialValues.response);
+      setUnconcludeds(filterUnconcludeds());
+    }
+    
+    setResponse(apiResponse);
+  };
+
+  const handleEditTask = async (receivedTask: ITask) => {
+    const apiResponse = await EditTaskHelper(receivedTask, token?.token);
+    if (apiResponse.task) {
+      setTasks([...tasks, apiResponse.task]);
+    }
     
     setResponse(apiResponse);
   };
@@ -130,34 +188,69 @@ const TodoProvider = ({ children }: any) => {
     const validateUserLogged = async () => {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
+        setToken({
+          ...token,
+          token: storedToken,
+        });
         const data = await ValidateHelper(storedToken);
         if (data.id) {
           const user = await GetUserHelper(storedToken, data.id);
           setUserLogged(user);
-          setTasks(user.tasks);          
+          setTasks(user.tasks);
+          setUnconcludeds(filterUnconcludeds());
         }
       }
     };
     validateUserLogged();
   }, []);
+  
+  const getUserTasks = async () => {
+    if (token && token.token && userLogged) {
+        const { tasks } = await GetUserHelper(token.token, userLogged.id);
+    
+        if (tasks) setTasks(tasks);
+      }
+  };
+
+  useEffect(() => {
+    getUserTasks();
+  }, [isEditing]);
+
+  useEffect(() => {
+    setUnconcludeds(filterUnconcludeds());
+  }, [tasks]);
+  
+
+  useEffect(() => {
+    console.log('HERE');
+     
+  }, [unconcludeds, isEditing, tasks]);
 
   const contextValues = {
     inRegistrationUser,
+    isEditing,
     users,
     userLogged,
+    task,
     tasks,
+    unconcludeds,
     login,
     response,
     token,
     isLoginOpen,
     setInRegistrationUser,
+    setIsEditing,
     setUsers,
     setLogin,
+    setTasks,
     handleChange,
     handleRegisterChange,
     handleLogin,
     handleLogout,
     handleRegister,
+    handleSendTask,
+    handleEditTask,
+    handleTaskChange,
     openLogin,
     closeLogin,
   };

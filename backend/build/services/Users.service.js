@@ -34,7 +34,7 @@ class UsersService {
             const user = yield User_1.default.findOne({
                 where: { id: this.id },
                 include: [
-                    { model: Task_1.default, as: 'tasks', attributes: { exclude: ['id'] } },
+                    { model: Task_1.default, as: 'tasks' },
                 ],
                 attributes: { exclude: ['password'] },
             });
