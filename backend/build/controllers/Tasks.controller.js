@@ -96,6 +96,7 @@ class TasksController {
                     return res.status(400)
                         .json({ message: 'No data to update.' });
                 const task = Object.assign(Object.assign({}, req.body), { id });
+                console.log(req.body);
                 const updatedTask = yield this.service.updateTask(task);
                 if (!updatedTask)
                     return res.status(403)
