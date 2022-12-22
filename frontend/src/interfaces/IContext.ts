@@ -6,9 +6,11 @@ import IError from './IError';
 
 export default interface IContext {
   inRegistrationUser: IRegistering;
+  isEditing: boolean;
   users: IUser[] | null;
   task: ITask;
   tasks: ITask[] | [];
+  unconcludeds: ITask[] | [];
   userLogged: IUser | null;
   response: IError | null;
   token: IToken | null;
@@ -21,6 +23,9 @@ export default interface IContext {
   handleLogout: (event: any) => void;
   handleRegister: (event: any) => void;
   handleSendTask: (event: any) => void;
+  handleEditTask: (event: any) => void;
+  setTasks: (newState: ITask[] | []) => void;
+  setIsEditing: (newState: boolean) => void;
   openLogin: () => void;
   closeLogin: () => void;
 }
